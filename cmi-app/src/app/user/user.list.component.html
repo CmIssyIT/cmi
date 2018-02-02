@@ -1,0 +1,12 @@
+<button (click)="login()" *ngIf="!isAuthenticated()">Login</button>
+<button (click)="logout()" *ngIf="isAuthenticated()">Logout</button>
+
+<h2 *ngIf="isAuthenticated()">Welcome, {{(me | async).username}}</h2>
+<h2 *ngIf="isAuthenticated()">Users</h2>
+<ul class="users" *ngIf="isAuthenticated()">
+  <li *ngFor="let user of users | async">
+    {{user.username}}
+    {{user.firstName}}
+    {{user.lastName}}
+  </li>
+</ul>

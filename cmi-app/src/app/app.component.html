@@ -1,0 +1,14 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}
+  </h1>
+</div>
+
+<p>
+
+  <ngb-alert type="success"  [dismissible]="false">
+    <span class="user-first-name">Prénom {{ (currentUser$ | async)?.firstname }}</span>
+    <span class="user-last-name">Nom {{ (currentUser$ | async)?.lastname }}</span>
+  </ngb-alert>
+</p>

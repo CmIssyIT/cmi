@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    keycloak:
+        build:
+            context: ./keycloak
+            args:
+                - KEYCLOAK_IMPORT_REALM=./keycloak/cmi-realm.json
+        container_name: cmi-keycloak
+        environment:
+            KEYCLOAK_LOGLEVEL: DEBUG
+            KEYCLOAK_USER: admin
+            KEYCLOAK_PASSWORD: pwd
+        ports:
+            - "8089:8080"
+        volumes:
+            - ./data:/data
+        networks:
+            - oidc
+volumes:
+  esdata1:
+    driver: local
+networks:
+
+  oidc:
+    driver: bridge
