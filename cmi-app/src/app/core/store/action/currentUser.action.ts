@@ -4,12 +4,12 @@ import { Action } from '@ngrx/store';
 export const GET_CURRENT_USER_FUNCTION = '[CurrentUser] Get CurrentUser function';
 export const GET_CURRENT_USER_FUNCTION_SUCCESS = '[CurrentUser] Get CurrentUser function success';
 
-export const LOAD_CURRENT_USER_DATA = '[CurrentUser] Load Current User Data';
-export const LOAD_CURRENT_USER_DATA_SUCCESS = '[CurrentUser] Load Current User Data Success';
+export const LOAD_CURRENT_USER_DATA = '[CurrentUser] Load Current Inscription Data';
+export const LOAD_CURRENT_USER_DATA_SUCCESS = '[CurrentUser] Load Current Inscription Data Success';
 
 export class LoadCurrentUserDataAction implements Action {
   readonly type = LOAD_CURRENT_USER_DATA;
-  constructor(public payload: CurrentUser) {console.log("logged user: " +payload) }
+  constructor(public payload: CurrentUser) { }
 }
 
 export class GetCurrentUserFunctionAction implements Action {

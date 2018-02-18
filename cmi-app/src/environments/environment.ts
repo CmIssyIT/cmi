@@ -12,10 +12,10 @@ export const environment = {
 
 const keyCloakUrl = 'http://localhost:8089';
 export const openId = {
-  LOGIN_URL: `${keyCloakUrl}/auth/realms/boilerplate-oauth2/protocol/openid-connect/auth`,
-  ISSUER: `${keyCloakUrl}/auth/realms/boilerplate-oauth2`,
+  LOGIN_URL: `${keyCloakUrl}/auth/realms/cmi/protocol/openid-connect/auth`,
+  ISSUER: `${keyCloakUrl}/auth/realms/cmi`,
   REDIRECT_URL: 'https://localhost:4200',
-  CLIENT_ID: 'boilerplate-oidc',
+  CLIENT_ID: 'cmi-oidc',
   SCOPE: '',
   LOGOUT_URL: 'https://localhost:4200',
   useSilentRefresh: true,

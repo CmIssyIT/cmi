@@ -38,10 +38,18 @@ export class SecurityService {
     }
     const jwt = new JwtHelper();
 
-    const {realm_access, firstname, lastname} = jwt.decodeToken(token);
+    const {realm_access, given_name, family_name} = jwt.decodeToken(token);
     let roles = [];
     if (realm_access !== void 0 && realm_access !== null) {
       roles = realm_access.roles;
+    }
+    let firstname;
+    if(given_name !==null){
+      firstname =given_name;
+    }
+    let lastname;
+    if(family_name !== null){
+      lastname =family_name;
     }
     return {firstname, lastname, roles};
   }
