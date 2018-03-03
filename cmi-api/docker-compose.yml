@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    db:
+        image: postgres:9.4-alpine
+        container_name: cmi-db
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: cmi
+            POSTGRES_PASSWORD: cmi

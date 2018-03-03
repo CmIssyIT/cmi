@@ -1,0 +1,11 @@
+# application configuration
+spring:
+    jpa:
+        database: default
+        generate-ddl: false
+        properties.hibernate.default_schema: public
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost/myapp
+        username: myapp
+        password: myapp
