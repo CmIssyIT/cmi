@@ -6,6 +6,6 @@ spring:
         properties.hibernate.default_schema: public
     datasource:
         driver-class-name: org.postgresql.Driver
-        url: jdbc:postgresql://localhost/myapp
-        username: myapp
-        password: myapp
+        url: jdbc:postgresql://localhost/cmi
+        username: cmi
+        password: cmi

@@ -1,5 +1,7 @@
 package fr.cmi.inscription.domain;
 
+import fr.cmi.inscription.domain.Inscription;
+import fr.cmi.inscription.domain.InscriptionRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -32,19 +32,19 @@ public class InscriptionControllerIT {
 
     @Test
     @Sql(statements = {
-        "delete from inscription",
-        "insert into inscription(id, first_name, last_name) values (1, 'firstName1','lastName1'), (2, 'firstName2','lastName2')"
+            "delete from inscription",
+            "insert into inscription(id, first_name, last_name) values (1, 'firstName1','lastName1'), (2, 'firstName2','lastName2')"
     })
     public void should_return_all_inscriptions_formatted_as_json() throws Exception {
 
         get(BASE_URL + "/inscriptions")
-            .then()
-            .statusCode(OK.value())
-            .contentType(JSON)
-            .body("size()", equalTo(2))
-            .body("id", contains(1, 2))
-            .body("firstName", contains("firstName1", "firstName2"))
-            .body("lastName", contains("lastName1", "lastName2"));
+                .then()
+                .statusCode(OK.value())
+                .contentType(JSON)
+                .body("size()", equalTo(2))
+                .body("id", contains(1, 2))
+                .body("firstName", contains("firstName1", "firstName2"))
+                .body("lastName", contains("lastName1", "lastName2"));
     }
 
     @Test
@@ -53,33 +53,33 @@ public class InscriptionControllerIT {
         Inscription expected = new Inscription("testFirstName", "testLastName");
 
         given()
-            .contentType(APPLICATION_JSON_VALUE)
-            .body(expected)
-            .post(BASE_URL + "/inscriptions")
-            .then()
-            .statusCode(OK.value())
-            .contentType(JSON)
-            .body("id", notNullValue())
-            .body("firstName", equalTo("testFirstName"))
-            .body("lastName", equalTo("testLastName"));
+                .contentType(APPLICATION_JSON_VALUE)
+                .body(expected)
+                .post(BASE_URL + "/inscriptions")
+                .then()
+                .statusCode(OK.value())
+                .contentType(JSON)
+                .body("id", notNullValue())
+                .body("firstName", equalTo("testFirstName"))
+                .body("lastName", equalTo("testLastName"));
 
         assertThat(inscriptionRepository.findAll())
-            .hasSize(1)
-            .usingElementComparator(Comparator.comparing(Inscription::getFirstName).thenComparing(Inscription::getLastName))
-            .containsOnly(expected)
-            .extracting(Inscription::getId).isNotNull();
+                .hasSize(1)
+                .usingElementComparator(Comparator.comparing(Inscription::getFirstName).thenComparing(Inscription::getLastName))
+                .containsOnly(expected)
+                .extracting(Inscription::getId).isNotNull();
     }
 
     @Test
     public void should_return_bad_request_when_posted_inscription_body_is_not_valid() {
         given()
-            .contentType(APPLICATION_JSON_VALUE)
-            .body(new Inscription())
-            .post(BASE_URL + "/inscriptions")
-            .then()
-            .statusCode(BAD_REQUEST.value())
-            .contentType(JSON)
-            .body("message", equalTo(BAD_REQUEST.getReasonPhrase()));
+                .contentType(APPLICATION_JSON_VALUE)
+                .body(new Inscription())
+                .post(BASE_URL + "/inscriptions")
+                .then()
+                .statusCode(BAD_REQUEST.value())
+                .contentType(JSON)
+                .body("message", equalTo(BAD_REQUEST.getReasonPhrase()));
     }
 
 }
