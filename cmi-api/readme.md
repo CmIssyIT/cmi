@@ -37,6 +37,8 @@ docker-compose up -d
 java -jar ./build/libs/spring-boot-app-1.0.jar
 ```
 
+## Convert MySQL to Postgres:
+http://www.sqlines.com/online
 ## Endpoints
 
 [/info](http://localhost:8080/info)

@@ -1,5 +1,6 @@
 package fr.cmi.inscription.domain;
 
+import fr.cmi.AppITConfig;
 import fr.cmi.inscription.domain.Inscription;
 import fr.cmi.inscription.domain.InscriptionRepository;
 import org.junit.Test;
@@ -7,10 +8,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@ActiveProfiles("test")
 @DataJpaTest
 @RunWith(SpringRunner.class)
 public class InscriptionRepositoryIT {

@@ -1,0 +1,5 @@
+databaseChangeLog:
+# CREATE SCHEMA
+  - include:
+        file: db/changelog/versions/0.0.1/0000_CREATE_SCHEMA_enseignement.sql
+

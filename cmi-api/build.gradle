@@ -20,6 +20,10 @@ repositories {
 springBoot {
 }
 
+bootRun {
+    args = ["--spring.profiles.active=dev"]
+}
+
 test {
     include '**/*Test.class'
     testLogging.showStandardStreams = true
