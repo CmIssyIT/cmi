@@ -2,4 +2,5 @@ language: java
 jdk:
  - oraclejdk8
 
-install: ./cmi-api/gradlew clean build
+script:
+- ./cmi-api/gradlew clean build
