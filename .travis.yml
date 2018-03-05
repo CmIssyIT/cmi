@@ -3,4 +3,4 @@ jdk:
  - oraclejdk8
 
 script:
-- ./cmi-api/gradlew clean build
+- ./scripts/build-api.sh
