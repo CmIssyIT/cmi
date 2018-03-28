@@ -1,14 +1,51 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}
-  </h1>
+<div class="flex">
+  <div id="wrapper"  [class.toggled]="toggled">
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav cursor" style="margin-left:0;">
+        <li class="sidebar-brand" (click)="toggled = !toggled">
+          <a  style="margin-top:20px;float:right;" >
+            <i class="fa fa-bars" style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true">
+            </i>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/members">>
+            <i class="fa fa-user" aria-hidden="true"> </i>
+            <span style="margin-left:1px;">Membres</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-edit" aria-hidden="true"> </i>
+            <span style="margin-left:1px;">Inscriptions</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-file-text" aria-hidden="true"> </i>
+            <span style="margin-left:1px;">Classes</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-tachometer" aria-hidden="true"> </i>
+            <span style="margin-left:1px;">Matières</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-comment-o" aria-hidden="true"> </i>
+            <span style="margin-left:1px;">Notes</span>
+          </a>
+        </li>
+        <li>
+          <a href="register.html">
+            <i class="fa fa-book" aria-hidden="true"> </i>
+            <span style="margin-left:1px;">Registration</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
 </div>
-
-<p>
-
-  <ngb-alert type="success"  [dismissible]="false">
-    <span class="inscription-first-name">Prénom {{ (currentUser$ | async)?.firstname }}</span>
-    <span class="inscription-last-name">Nom {{ (currentUser$ | async)?.lastname }}</span>
-  </ngb-alert>
-</p>

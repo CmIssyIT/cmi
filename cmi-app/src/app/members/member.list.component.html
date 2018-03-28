@@ -1,0 +1,101 @@
+ <div class="container" style="">
+    <div class="homecontainer w-100">
+      <div class="row">
+        <form class="form-group col-9 col-lg-10 col-sm-9 col-md-11 col-xl-11" role="search">
+          <div class="input-group add-on">
+            <input type="text" class="form-control" placeholder="Je cherche quelqu'un.." [(ngModel)]="search" name="search">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row mb-3">
+        <div class="dropdown justify-content-left" style="padding-left:15px; ">
+          <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Un Nouveau <i class="fa fa-user-plus"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="newStudentRegister.html">Elève</a>
+            <a class="dropdown-item" href="ProfDetail.html">Enseignant</a>
+            <a class="dropdown-item" href="StudentResponsible.html">Responsable de élève</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="table-responsive col-11">
+        <div class="row">
+          <table class="col table table-striped table-hover table-list-search" id="table_format">
+            <thead class="thead-light">
+            <tr class="align-text-bottom">
+              <th class="text-nowrap" scope="col"><input  type="checkbox" name="aggree" value="1"> Select All</th>
+              <th class="text-nowrap" scope="col" style="width:230px">
+                Nom Prénom
+                <i class="fa " [ngClass]="getIconOrderBy('firstName')" (click)="orderBy('firstName')"></i>
+              </th>
+              <th class="text-nowrap" scope="col" >
+                Date de naissance
+                <i class="fa " [ngClass]="getIconOrderBy('birthday')" (click)="orderBy('birthday')"></i>
+              </th>
+              <th scope="col">
+                Age
+                <i class="fa "></i>
+              </th>
+              <th scope="col">
+                <select id='filterText' style='display:inline-block' [(ngModel)]="role">
+                  <option disabled selected value="">Role</option>
+                  <option value='2'>Responsable de élève</option>
+                  <option value='0'>Elève</option>
+                  <option value='1'>Enseignant</option>
+                  <option value='all'>Tout</option>
+                </select>
+              </th>
+              <th scope="col">
+                Sexe
+                <i class="fa " [ngClass]="getIconOrderBy('gender')" (click)="orderBy('gender')"></i>
+              </th>
+              <th scope="col">
+                <select id='filterText1' style='display:inline-block' [(ngModel)]="classe">
+                  <option disabled selected value="">Classe</option>
+                  <option value='Coran Niv1'>Coran Niv1</option>
+                  <option value='Arabe Rawdati'>Arabe Rawdati</option>
+                  <option value='Coran Niv2'>Coran Niv2</option>
+                  <option value='all'>Tout</option>
+                </select>
+              </th>
+              <th scope="col">Statut</th>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            <tr class="content" *ngFor="let member of getMembers()">
+              <th scope="row">
+                <input type="checkbox" name="aggree" value="1">
+              </th>
+              <td>{{member.firstName}} {{member.lastName}}</td>
+              <td>{{member.birthday | date : "dd/MM/yyyy"}}</td>
+              <td>{{member.age}}</td>
+              <td>{{member.role.label}}</td>
+              <td>{{member.gender}}</td>
+              <td>{{member.classe}}</td>
+              <td>{{member.status}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <form class="form-check-inline">
+        <label class="mr-sm-2" for="inlineFormCustomSelect"></label>
+        <select class="custom-select col-7" id="inlineFormCustomSelect">
+          <option selected>Editer et envoyer bullentins</option>
+          <option value="1">Editer les bullentins</option>
+          <option value="2">Envoyer Mail</option>
+          <option value="3">Envoyer SMS</option>
+          <option value="4">Notification d'absence</option>
+        </select>
+        <button type="submit" class="btn btn-primary col-3">GO <span class="fa fa-paper-plane"></span></button>
+      </form>
+    </div>
+  </div>

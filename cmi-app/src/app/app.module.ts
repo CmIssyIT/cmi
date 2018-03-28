@@ -13,14 +13,17 @@ import {reducerProvider, reducerToken} from "./core/store/reducer/index";
 import {InitializationEffects} from "./core/store/effect/initialization.effects";
 import {EffectsModule} from "@ngrx/effects";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-
-
+import {UserListComponent} from "./user/user.list.component";
+import {UserService} from "./user/user.service"
+import {AuthHttp} from "angular2-jwt";
+import {MembersModule} from "./members/members.module";
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
+    MembersModule,
     OAuthModule.forRoot(),
     SecurityModule,
     CoreModule,
@@ -30,7 +33,11 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     EffectsModule.forRoot([InitializationEffects]),
     NgbModule.forRoot()
   ],
-  providers: [reducerProvider],
-  bootstrap: [AppComponent]
+  providers: [
+    reducerProvider,
+    UserService],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

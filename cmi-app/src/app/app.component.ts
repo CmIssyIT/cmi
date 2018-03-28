@@ -14,12 +14,12 @@ import {CurrentUser} from "./core/store/model/currentUser.model";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css','navbar.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'CMI App';
   currentUser$: Observable<CurrentUser>;
-
+  toggled = false;
   constructor(private securityService: SecurityService,
               private router: Router,
               private store: Store<fromRoot.CMIState>) {

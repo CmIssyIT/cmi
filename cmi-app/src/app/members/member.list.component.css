@@ -1,0 +1,16 @@
+.homecontainer {
+  margin-left: 90px;
+  margin-top: 50px;
+}
+td {
+  text-align: center;
+}
+.table .thead-light th {
+  min-width: 90px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.container {
+  max-width: unset;
+}
