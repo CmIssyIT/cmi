@@ -1,0 +1,497 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="khaled" id="1522596068167-1">
+        <createTable schemaName="enseignement" tableName="ens_t_adresse">
+            <column autoIncrement="true" name="id_adresse" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_adresse_pkey"/>
+            </column>
+            <column name="id_personne" type="INT"/>
+            <column defaultValueNumeric="1" name="type" type="INT"/>
+            <column defaultValue="NULL" name="adresse" type="VARCHAR(200)"/>
+            <column defaultValue="NULL" name="code_postal" type="VARCHAR(5)"/>
+            <column defaultValue="NULL" name="ville" type="VARCHAR(50)"/>
+            <column defaultValue="NULL" name="telephone" type="VARCHAR(20)"/>
+            <column defaultValue="NULL" name="mobile" type="VARCHAR(20)"/>
+            <column defaultValue="NULL" name="email" type="VARCHAR(50)"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-2">
+        <createTable schemaName="enseignement" tableName="ens_t_annee_scolaire">
+            <column autoIncrement="true" name="id_annee" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_annee_scolaire_pkey"/>
+            </column>
+            <column defaultValue="NULL" name="libelle" type="VARCHAR(50)"/>
+            <column defaultValueComputed="NULL" name="date_debut" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_fin" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="dernier_utilisateur" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-3">
+        <createTable schemaName="enseignement" tableName="ens_t_bulletin">
+            <column autoIncrement="true" name="id_bulletin" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_bulletin_pkey"/>
+            </column>
+            <column name="id_eleve" type="INT"/>
+            <column name="id_annee_sco" type="INT"/>
+            <column name="id_trimestre" type="INT"/>
+            <column name="moyenne" type="FLOAT8"/>
+            <column defaultValue="NULL" name="mention" type="VARCHAR(50)"/>
+            <column defaultValueNumeric="0" name="statut" type="INT"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column name="id_classe" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-4">
+        <createTable schemaName="enseignement" tableName="ens_t_classe">
+            <column autoIncrement="true" name="id_classe" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_classe_pkey"/>
+            </column>
+            <column defaultValue="NULL" name="code_classe" type="VARCHAR(50)"/>
+            <column defaultValue="NULL" name="nom_classe" type="VARCHAR(50)"/>
+            <column name="id_annee_scolaire" type="INT"/>
+            <column name="id_niveau" type="INT"/>
+            <column name="id_responsable" type="INT"/>
+            <column defaultValueNumeric="1" name="statut" type="INT"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-5">
+        <createTable schemaName="enseignement" tableName="ens_t_classe_eleve">
+            <column autoIncrement="true" name="id_clas_elev" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_classe_eleve_pkey"/>
+            </column>
+            <column name="id_classe" type="INT"/>
+            <column name="id_eleve" type="INT"/>
+            <column defaultValueNumeric="1" name="statut" type="INT"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-6">
+        <createTable schemaName="enseignement" tableName="ens_t_classe_matiere">
+            <column autoIncrement="true" name="id_clas_mat" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_classe_matiere_pkey"/>
+            </column>
+            <column name="id_classe" type="INT"/>
+            <column name="id_matiere" type="INT"/>
+            <column name="flag" type="INT"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-7">
+        <createTable schemaName="enseignement" tableName="ens_t_classe_trimestre">
+            <column autoIncrement="true" name="id_cla_tri" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_classe_trimestre_pkey"/>
+            </column>
+            <column name="id_classe" type="INT"/>
+            <column name="id_trimestre" type="INT"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-8">
+        <createTable schemaName="enseignement" tableName="ens_t_facture">
+            <column autoIncrement="true" name="id_facture" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_facture_pkey"/>
+            </column>
+            <column name="date_facture" type="date"/>
+            <column name="montant" type="FLOAT8"/>
+            <column defaultValueNumeric="1" name="statut" type="INT"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-9">
+        <createTable schemaName="enseignement" tableName="ens_t_inscription">
+            <column autoIncrement="true" name="id_enseignement" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_inscription_pkey"/>
+            </column>
+            <column defaultValue="NULL" name="code_enseignement" type="VARCHAR(50)"/>
+            <column name="id_responsable" type="INT"/>
+            <column defaultValue="NULL" name="libelle" type="VARCHAR(50)"/>
+            <column defaultValueNumeric="1" name="type" type="INT"/>
+            <column name="id_ann_sco" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_enseignement" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueNumeric="0" name="statut" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_validation" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column name="id_facture" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_debut" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_fin" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValue="NULL" name="commentaire" type="VARCHAR(300)"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-10">
+        <createTable schemaName="enseignement" tableName="ens_t_inscription_eleve">
+            <column autoIncrement="true" name="id_insc_ele" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_inscription_eleve_pkey"/>
+            </column>
+            <column name="id_eleve" type="INT"/>
+            <column name="id_enseignement" type="INT"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-11">
+        <createTable schemaName="enseignement" tableName="ens_t_matiere">
+            <column autoIncrement="true" name="id_matiere" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_matiere_pkey"/>
+            </column>
+            <column defaultValue="NULL" name="code_matiere" type="VARCHAR(50)"/>
+            <column defaultValue="NULL" name="nom" type="VARCHAR(50)"/>
+            <column defaultValueNumeric="1" name="coef" type="INT"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-12">
+        <createTable schemaName="enseignement" tableName="ens_t_mode_paiement">
+            <column autoIncrement="true" name="id_mode" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_mode_paiement_pkey"/>
+            </column>
+            <column defaultValue="NULL" name="libelle" type="VARCHAR(50)"/>
+            <column defaultValueNumeric="1" name="statut" type="INT"/>
+            <column name="dernier_utilisateur" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-13">
+        <createTable schemaName="enseignement" tableName="ens_t_notes">
+            <column autoIncrement="true" name="id_note" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_notes_pkey"/>
+            </column>
+            <column name="id_eleve" type="INT"/>
+            <column name="id_trimestre" type="INT"/>
+            <column name="id_classe" type="INT"/>
+            <column name="id_matiere" type="INT"/>
+            <column name="valeur" type="FLOAT8"/>
+            <column defaultValueComputed="NULL" name="date_note" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValue="NULL" name="remarque" type="VARCHAR(50)"/>
+            <column defaultValueNumeric="0" name="flag" type="INT"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-14">
+        <createTable schemaName="enseignement" tableName="ens_t_paiement">
+            <column autoIncrement="true" name="id_paiement" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_paiement_pkey"/>
+            </column>
+            <column name="id_facture" type="INT"/>
+            <column name="montant" type="FLOAT8"/>
+            <column defaultValueComputed="NULL" name="date_paiement" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column name="mode_paiement" type="INT"/>
+            <column defaultValue="NULL" name="commentaire" type="VARCHAR(300)"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-15">
+        <createTable schemaName="enseignement" tableName="ens_t_personne">
+            <column autoIncrement="true" name="id_personne" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_personne_pkey"/>
+            </column>
+            <column defaultValueNumeric="1" name="type" type="INT"/>
+            <column defaultValue="NULL" name="nom" type="VARCHAR(50)"/>
+            <column defaultValue="NULL" name="prenom" type="VARCHAR(50)"/>
+            <column name="date_naissance" type="date"/>
+            <column defaultValueNumeric="1" name="sexe" type="INT"/>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueNumeric="1" name="statut" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-16">
+        <createTable schemaName="enseignement" tableName="ens_t_responsable_eleve">
+            <column autoIncrement="true" name="id_res_ele" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_responsable_eleve_pkey"/>
+            </column>
+            <column name="id_responsable" type="INT"/>
+            <column name="id_eleve" type="INT"/>
+            <column defaultValueNumeric="1" name="flag" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dernier_utilisateur" type="INT"/>
+            <column defaultValueComputed="NULL" name="date_crea" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_maj" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-17">
+        <createTable schemaName="enseignement" tableName="ens_t_trimestre">
+            <column autoIncrement="true" name="id_trimestre" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ens_t_trimestre_pkey"/>
+            </column>
+            <column defaultValue="NULL" name="libelle" type="VARCHAR(50)"/>
+            <column defaultValueComputed="NULL" name="date_debut" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column defaultValueComputed="NULL" name="date_fin" type="TIMESTAMP(22) WITHOUT TIME ZONE"/>
+            <column name="dernier_utilisateur" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-18">
+        <createTable schemaName="enseignement" tableName="ens_v_age_personne">
+            <column name="id_personne" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="numeric(7)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-19">
+        <addUniqueConstraint columnNames="id_personne, type" constraintName="adresse_unique" tableName="ens_t_adresse"
+                             schemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-20">
+        <addUniqueConstraint columnNames="id_classe, id_eleve" constraintName="classe_unique_active" tableName="ens_t_classe_eleve" schemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-21">
+        <addUniqueConstraint columnNames="id_responsable, id_eleve" constraintName="responsable_unique_actif"
+                             tableName="ens_t_responsable_eleve" schemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-22">
+        <createIndex indexName="fk__t_personne" tableName="ens_t_responsable_eleve" schemaName="enseignement">
+            <column name="id_responsable"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-23">
+        <createIndex indexName="fk__t_personne_2" tableName="ens_t_responsable_eleve" schemaName="enseignement">
+            <column name="id_eleve"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-24">
+        <createIndex indexName="fk_t_adresse_t_personne" tableName="ens_t_adresse" schemaName="enseignement">
+            <column name="id_personne"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-25">
+        <createIndex indexName="fk_t_bulletin_t_annee_scolaire" tableName="ens_t_bulletin" schemaName="enseignement">
+            <column name="id_annee_sco"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-26">
+        <createIndex indexName="fk_t_bulletin_t_personne" tableName="ens_t_bulletin" schemaName="enseignement">
+            <column name="id_eleve"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-27">
+        <createIndex indexName="fk_t_bulletin_t_trimestre" tableName="ens_t_bulletin" schemaName="enseignement">
+            <column name="id_trimestre"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-28">
+        <createIndex indexName="fk_t_classe_eleve_t_classe" tableName="ens_t_classe_eleve" schemaName="enseignement">
+            <column name="id_classe"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-29">
+        <createIndex indexName="fk_t_classe_eleve_t_personne" tableName="ens_t_classe_eleve" schemaName="enseignement">
+            <column name="id_eleve"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-30">
+        <createIndex indexName="fk_t_classe_matiere_t_classe" tableName="ens_t_classe_matiere" schemaName="enseignement">
+            <column name="id_classe"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-31">
+        <createIndex indexName="fk_t_classe_matiere_t_matiere" tableName="ens_t_classe_matiere" schemaName="enseignement">
+            <column name="id_matiere"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-32">
+        <createIndex indexName="fk_t_classe_t_annee_scolaire" tableName="ens_t_classe" schemaName="enseignement">
+            <column name="id_annee_scolaire"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-33">
+        <createIndex indexName="fk_t_classe_t_personne" tableName="ens_t_classe" schemaName="enseignement">
+            <column name="id_responsable"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-34">
+        <createIndex indexName="fk_t_classe_trimestre_t_classe" tableName="ens_t_classe_trimestre" schemaName="enseignement">
+            <column name="id_classe"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-35">
+        <createIndex indexName="fk_t_classe_trimestre_t_trimestre" tableName="ens_t_classe_trimestre" schemaName="enseignement">
+            <column name="id_trimestre"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-36">
+        <createIndex indexName="fk_t_enseignement_t_annee_scolaire" tableName="ens_t_inscription" schemaName="enseignement">
+            <column name="id_ann_sco"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-37">
+        <createIndex indexName="fk_t_enseignement_t_personne" tableName="ens_t_inscription" schemaName="enseignement">
+            <column name="id_responsable"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-38">
+        <createIndex indexName="fk_t_inscription_eleve_t_inscription" tableName="ens_t_inscription_eleve" schemaName="enseignement">
+            <column name="id_enseignement"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-39">
+        <createIndex indexName="fk_t_inscription_eleve_t_personne" tableName="ens_t_inscription_eleve" schemaName="enseignement">
+            <column name="id_eleve"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-40">
+        <createIndex indexName="fk_t_inscription_t_facture" tableName="ens_t_inscription" schemaName="enseignement">
+            <column name="id_facture"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-41">
+        <createIndex indexName="fk_t_notes_t_classe" tableName="ens_t_notes" schemaName="enseignement">
+            <column name="id_classe"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-42">
+        <createIndex indexName="fk_t_notes_t_matiere" tableName="ens_t_notes" schemaName="enseignement">
+            <column name="id_matiere"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-43">
+        <createIndex indexName="fk_t_notes_t_personne" tableName="ens_t_notes" schemaName="enseignement">
+            <column name="id_eleve"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-44">
+        <createIndex indexName="fk_t_notes_t_trimestre" tableName="ens_t_notes" schemaName="enseignement">
+            <column name="id_trimestre"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-45">
+        <createIndex indexName="fk_t_paiement_t_facture" tableName="ens_t_paiement" schemaName="enseignement">
+            <column name="id_facture"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-46">
+        <createIndex indexName="fk_t_paiement_t_paiement" tableName="ens_t_paiement" schemaName="enseignement">
+            <column name="mode_paiement"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-47">
+        <addForeignKeyConstraint baseColumnNames="id_responsable" baseTableName="ens_t_responsable_eleve" constraintName="fk__t_personne"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id_personne" referencedTableName="ens_t_personne"
+                               referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-48">
+        <addForeignKeyConstraint baseColumnNames="id_eleve" baseTableName="ens_t_responsable_eleve" constraintName="fk__t_personne_2"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_personne" referencedTableName="ens_t_personne" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-49">
+        <addForeignKeyConstraint baseColumnNames="id_classe" baseTableName="ens_t_bulletin"
+                                 constraintName="fk_ens_t_bulletin_ens_t_classe" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_classe" referencedTableName="ens_t_classe" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-50">
+        <addForeignKeyConstraint baseColumnNames="id_personne" baseTableName="ens_t_adresse" constraintName="fk_t_adresse_t_personne"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_personne" referencedTableName="ens_t_personne" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-51">
+        <addForeignKeyConstraint baseColumnNames="id_annee_sco" baseTableName="ens_t_bulletin"
+                                 constraintName="fk_t_bulletin_t_annee_scolaire" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_annee" referencedTableName="ens_t_annee_scolaire" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-52">
+        <addForeignKeyConstraint baseColumnNames="id_eleve" baseTableName="ens_t_bulletin" constraintName="fk_t_bulletin_t_personne"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_personne" referencedTableName="ens_t_personne" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-53">
+        <addForeignKeyConstraint baseColumnNames="id_trimestre" baseTableName="ens_t_bulletin" constraintName="fk_t_bulletin_t_trimestre"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_trimestre" referencedTableName="ens_t_trimestre" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-54">
+        <addForeignKeyConstraint baseColumnNames="id_classe" baseTableName="ens_t_classe_eleve"
+                                 constraintName="fk_t_classe_eleve_t_classe" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_classe" referencedTableName="ens_t_classe" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-55">
+        <addForeignKeyConstraint baseColumnNames="id_eleve" baseTableName="ens_t_classe_eleve"
+                                 constraintName="fk_t_classe_eleve_t_personne" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_personne" referencedTableName="ens_t_personne" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-56">
+        <addForeignKeyConstraint baseColumnNames="id_classe" baseTableName="ens_t_classe_matiere"
+                                 constraintName="fk_t_classe_matiere_t_classe" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_classe" referencedTableName="ens_t_classe" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-57">
+        <addForeignKeyConstraint baseColumnNames="id_matiere" baseTableName="ens_t_classe_matiere"
+                                 constraintName="fk_t_classe_matiere_t_matiere" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_matiere" referencedTableName="ens_t_matiere" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-58">
+        <addForeignKeyConstraint baseColumnNames="id_annee_scolaire" baseTableName="ens_t_classe"
+                                 constraintName="fk_t_classe_t_annee_scolaire" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_annee" referencedTableName="ens_t_annee_scolaire" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-59">
+        <addForeignKeyConstraint baseColumnNames="id_responsable" baseTableName="ens_t_classe" constraintName="fk_t_classe_t_personne"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_personne" referencedTableName="ens_t_personne" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-60">
+        <addForeignKeyConstraint baseColumnNames="id_classe" baseTableName="ens_t_classe_trimestre"
+                                 constraintName="fk_t_classe_trimestre_t_classe" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_classe" referencedTableName="ens_t_classe" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-61">
+        <addForeignKeyConstraint baseColumnNames="id_trimestre" baseTableName="ens_t_classe_trimestre"
+                                 constraintName="fk_t_classe_trimestre_t_trimestre" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_trimestre" referencedTableName="ens_t_trimestre" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-62">
+        <addForeignKeyConstraint baseColumnNames="id_ann_sco" baseTableName="ens_t_inscription"
+                                 constraintName="fk_t_enseignement_t_annee_scolaire" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_annee" referencedTableName="ens_t_annee_scolaire" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-63">
+        <addForeignKeyConstraint baseColumnNames="id_responsable" baseTableName="ens_t_inscription"
+                                 constraintName="fk_t_enseignement_t_personne" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_personne" referencedTableName="ens_t_personne" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-64">
+        <addForeignKeyConstraint baseColumnNames="id_enseignement" baseTableName="ens_t_inscription_eleve"
+                                 constraintName="fk_t_inscription_eleve_t_inscription" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_enseignement" referencedTableName="ens_t_inscription" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-65">
+        <addForeignKeyConstraint baseColumnNames="id_eleve" baseTableName="ens_t_inscription_eleve"
+                                 constraintName="fk_t_inscription_eleve_t_personne" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_personne" referencedTableName="ens_t_personne" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-66">
+        <addForeignKeyConstraint baseColumnNames="id_facture" baseTableName="ens_t_inscription"
+                                 constraintName="fk_t_inscription_t_facture" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_facture" referencedTableName="ens_t_facture" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-67">
+        <addForeignKeyConstraint baseColumnNames="id_classe" baseTableName="ens_t_notes" constraintName="fk_t_notes_t_classe"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_classe" referencedTableName="ens_t_classe" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-68">
+        <addForeignKeyConstraint baseColumnNames="id_matiere" baseTableName="ens_t_notes" constraintName="fk_t_notes_t_matiere"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_matiere" referencedTableName="ens_t_matiere" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-69">
+        <addForeignKeyConstraint baseColumnNames="id_eleve" baseTableName="ens_t_notes" constraintName="fk_t_notes_t_personne"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_personne" referencedTableName="ens_t_personne" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-70">
+        <addForeignKeyConstraint baseColumnNames="id_trimestre" baseTableName="ens_t_notes" constraintName="fk_t_notes_t_trimestre"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_trimestre" referencedTableName="ens_t_trimestre" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-71">
+        <addForeignKeyConstraint baseColumnNames="id_facture" baseTableName="ens_t_paiement" constraintName="fk_t_paiement_t_facture"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_facture" referencedTableName="ens_t_facture" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+    <changeSet author="khaled" id="1522596068167-72">
+        <addForeignKeyConstraint baseColumnNames="mode_paiement" baseTableName="ens_t_paiement" constraintName="fk_t_paiement_t_paiement"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_mode" referencedTableName="ens_t_mode_paiement" referencedTableSchemaName="enseignement"   baseTableSchemaName="enseignement"/>
+    </changeSet>
+</databaseChangeLog>

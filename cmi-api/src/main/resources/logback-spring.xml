@@ -25,11 +25,7 @@
                 <pattern>
                     <pattern>
                         {
-                        "sia":"${SIA}",
-                        "irn":"${IRN}",
-                        "component":"${COMPONENT}",
-                        "logType":"tech",
-                        "soc":false
+                        "component":"cmi-api"
                         }
                     </pattern>
                 </pattern>

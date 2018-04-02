@@ -1,12 +1,13 @@
 package fr.cmi.inscription.domain;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
+
+import fr.cmi.shared.database.AbstractUUIDEntity;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Inscription extends AbstractPersistable<Long> {
+public class Inscription extends AbstractUUIDEntity {
 
     @NotNull
     private String firstName;
@@ -38,4 +39,6 @@ public class Inscription extends AbstractPersistable<Long> {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+
 }

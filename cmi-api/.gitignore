@@ -13,3 +13,4 @@ out/*
 *.class
 data/
 out/
+/.idea/

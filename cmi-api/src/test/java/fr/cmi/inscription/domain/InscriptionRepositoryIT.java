@@ -1,8 +1,5 @@
 package fr.cmi.inscription.domain;
 
-import fr.cmi.AppITConfig;
-import fr.cmi.inscription.domain.Inscription;
-import fr.cmi.inscription.domain.InscriptionRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +22,7 @@ public class InscriptionRepositoryIT {
     private InscriptionRepository repository;
 
     @Test
-    public void should_find_all_users() throws Exception {
+    public void should_find_all_inscriptions() throws Exception {
         //given
         Inscription inscriptionOne = new Inscription("firstName1", "lastName1");
         testEntityManager.persist(inscriptionOne);
@@ -40,6 +37,19 @@ public class InscriptionRepositoryIT {
             .hasSize(2)
             .containsOnly(inscriptionOne, inscriptionTwo)
             .extracting(Inscription::getId).doesNotContainNull();
+    }
+
+    @Test
+    public void should_find_inscription_by_uuid(){
+        //given
+        Inscription inscriptionOne = new Inscription("firstName1", "lastName1");
+        testEntityManager.persist(inscriptionOne);
+
+        // when
+        Inscription result = repository.findByUuid(inscriptionOne.getUuid()).get();
+
+        // then
+        assertThat(result).isEqualTo(inscriptionOne);
     }
 
 }

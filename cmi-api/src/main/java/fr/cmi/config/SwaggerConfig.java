@@ -1,4 +1,4 @@
-package fr.cmi.shared.config;
+package fr.cmi.config;
 
 import fr.cmi.Application;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ import static springfox.documentation.builders.RequestHandlerSelectors.basePacka
 
 @Configuration
 @EnableSwagger2
-public class ApplicationConfig {
+public class SwaggerConfig {
 
     @Bean
     public Docket docket() {

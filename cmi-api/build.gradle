@@ -1,20 +1,28 @@
 plugins {
 
-    id "org.springframework.boot" version "1.5.7.RELEASE"
+    id "org.springframework.boot" version "1.5.10.RELEASE"
 
     id "org.sonarqube" version "2.6"
 
+    id 'nu.studer.jooq' version '2.0.11'
+
+    id 'org.liquibase.gradle' version '1.2.4'
+
+    id 'net.ltgt.apt' version '0.10'
 }
 
 apply plugin: 'java'
 apply plugin: "jacoco"
+
+apply from: 'jooq.gradle'
 
 group = 'fr.cmi'
 version = '1.0'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+    mavenLocal()
+    jcenter()
 }
 
 springBoot {
@@ -55,15 +63,43 @@ sonarqube {
 
 build.dependsOn verify
 
+
+liquibase {
+    activities {
+        main {
+            changeLogFile 'src/main/resources/db/changelog'
+            url 'jdbc:postgresql://localhost:5432/cmi'
+            username 'cmi'
+            password 'cmi'
+            referenceDriver 'org.postgresql.Driver'
+        }
+    }
+}
+
+configurations {
+    mapstruct
+}
+
+
 dependencies {
 
     // Spring: RestController, Monitoring, Tests
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-mail')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.boot:spring-boot-starter-validation')
 
-    compile("net.logstash.logback:logstash-logback-encoder:4.6")
+    compile('net.logstash.logback:logstash-logback-encoder:4.6')
+
+    // JOOQ: Database
+    compile('org.springframework.boot:spring-boot-starter-jooq')
+    compile('org.jooq:jooq')
+    jooqRuntime 'org.postgresql:postgresql:42.2.2'
+
+    // mapstruct
+    compile('org.mapstruct:mapstruct-jdk8:1.2.0.Final')
+    mapstruct('org.mapstruct:mapstruct-processor:1.2.0.Final')
 
     // Swagger: API live-documentation
     compile('io.springfox:springfox-swagger2:2.7.0')
@@ -75,10 +111,17 @@ dependencies {
     // Spring JPA: Database
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.liquibase:liquibase-core')
-    compile('org.postgresql:postgresql')
+    compile('org.postgresql:postgresql:42.2.2')
     testCompile('com.h2database:h2')
 
     // logstash logback
     testCompile('net.logstash.logback:logstash-logback-encoder:4.7')
+
+    //Lombok
+    compileOnly 'org.projectlombok:lombok:1.16.20'
+    apt "org.projectlombok:lombok:1.16.20"
+
+    compileOnly group: 'org.jooq', name: 'jooq-codegen-maven', version: '3.10.6'
+
 
 }

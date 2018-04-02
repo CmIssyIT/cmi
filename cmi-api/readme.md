@@ -4,7 +4,12 @@ The goal of this application is to provide a list of services for CMI portal.
 
 ## Build
 ```sh
-./gradlew clean build
+./gradlew clean build -x generateCmiJooqSchemaSource
+```
+
+## Generate jooq Schema Source
+```sh
+./gradlew clean generateCmiJooqSchemaSource
 ```
 
 ## Unit Test

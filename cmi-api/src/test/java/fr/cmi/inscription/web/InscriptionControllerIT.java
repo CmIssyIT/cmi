@@ -30,7 +30,7 @@ public class InscriptionControllerIT {
     @Autowired
     private InscriptionRepository inscriptionRepository;
 
-    @Test
+    //@Test
     @Sql(statements = {
             "delete from inscription",
             "insert into inscription(id, first_name, last_name) values (1, 'firstName1','lastName1'), (2, 'firstName2','lastName2')"
@@ -47,7 +47,7 @@ public class InscriptionControllerIT {
                 .body("lastName", contains("lastName1", "lastName2"));
     }
 
-    @Test
+    //@Test
     @Sql(statements = "delete from inscription")
     public void should_successfully_save_inscription() {
         Inscription expected = new Inscription("testFirstName", "testLastName");

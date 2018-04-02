@@ -2,7 +2,6 @@ package fr.cmi.inscription.web;
 
 import fr.cmi.inscription.domain.Inscription;
 import fr.cmi.inscription.domain.InscriptionRepository;
-import fr.cmi.inscription.web.InscriptionController;
 import org.junit.Test;
 
 import java.util.List;
