@@ -11,14 +11,18 @@ import java.util.List;
 public class MemberService {
     @Autowired
     private EnsTPersonneDao ensTPersonneDao;
+    private MemberRepository memberRepository;
 
-    public  List<EnsTPersonne> findAllMembers(){
-        return ensTPersonneDao.findAll();
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
+    public List<Member> findAllMembers() {
+        return this.memberRepository.findAllMembers();
     }
 
     public EnsTPersonne save(EnsTPersonne member) {
         ensTPersonneDao.insert(member);
-       return ensTPersonneDao.findById(member.getIdPersonne());
+        return ensTPersonneDao.findById(member.getIdPersonne());
     }
 }

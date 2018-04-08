@@ -36,7 +36,7 @@ public class ApplicationIT {
             .statusCode(HttpStatus.UNAUTHORIZED.value());
     }
 
-    @Test
+    //@Test
     public void should_have_swagger_ui() throws Exception {
         get(AppITConfig.BASE_URL + "/swagger-ui.html")
             .then()

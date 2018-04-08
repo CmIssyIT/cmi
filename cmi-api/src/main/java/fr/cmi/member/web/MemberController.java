@@ -1,7 +1,7 @@
 package fr.cmi.member.web;
 
-import fr.cmi.inscription.domain.Inscription;
 import fr.cmi.jooq.tables.pojos.EnsTPersonne;
+import fr.cmi.member.domain.Member;
 import fr.cmi.member.domain.MemberService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +20,8 @@ public class MemberController {
     }
 
     @GetMapping
-    public List<EnsTPersonne> findAll() {
-        return memberService.findAllMembers();
+    public List<Member> findAll() {
+       return memberService.findAllMembers();
     }
 
     @PostMapping

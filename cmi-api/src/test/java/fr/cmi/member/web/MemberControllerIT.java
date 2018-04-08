@@ -39,10 +39,10 @@ public class MemberControllerIT {
             .then()
             .statusCode(OK.value())
             .contentType(JSON)
-            .body("size()", equalTo(2))
-            .body("idPersonne", contains(1, 2))
-            .body("prenom", contains("firstName1", "firstName2"))
-            .body("nom", contains("lastName1", "lastName2"));
+            .body("size()", equalTo(3))
+            .body("id", contains("1", "2", "3"))
+            .body("firstName", contains("firstName1", "firstName2", "firstName3"))
+            .body("lastName", contains("lastName1", "lastName2", "lastName3"));
     }
 
     //@Test
@@ -50,7 +50,7 @@ public class MemberControllerIT {
         "classpath:sql/reset.sql"
     })
     public void should_successfully_save_member() {
-        Member expected = new Member("1", "testFirstName", "testLastName");
+        final Member expected =  Member.builder().id("1").firstName("testFirstName").lastName("testLastName").build();
 
         given()
             .contentType(APPLICATION_JSON_VALUE)

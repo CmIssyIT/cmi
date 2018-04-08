@@ -1,0 +1,26 @@
+.homecontainer {
+  margin-left: 90px;
+  margin-top: 50px;
+}
+td {
+  text-align: center;
+}
+.table .thead-light th {
+  min-width: 90px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.container {
+  max-width: unset;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: #c5f0f5;
+}
+
+.table-striped>tbody>tr:nth-child(even)>td,
+.table-striped>tbody>tr:nth-child(even)>th {
+  background-color: white;
+}

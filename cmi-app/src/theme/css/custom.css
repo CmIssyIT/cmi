@@ -1,21 +1,17 @@
-.user-first-name,
-.user-last-name {
-  display: block;
-  line-height: 20px;
-  font-size: 16px;
-  color: black;
-  text-align: right;
-}
-
-.flex {
-  display: flex;
-}
 
 
 .homecontainer{
   position: relative;
   top: 100px;
-  left: 150px;
+  left: 70px;
+  justify-content: space-around;
+}
+
+.ins-container{
+  position: relative;
+  padding-left: 30px;
+  top: 25px;
+  left: 35px;
   justify-content: space-around;
 }
 
@@ -26,12 +22,17 @@
 }
 
 
-
 @media screen and (max-width: 425px)  {
   .homecontainer{
     position: absolute;
     top: 100px;
     left: 80px;
+    justify-content: space-around;
+  }
+  .ins-container{
+    position: relative;
+    top: 25px;
+    left: 45px;
     justify-content: space-around;
   }
 }
