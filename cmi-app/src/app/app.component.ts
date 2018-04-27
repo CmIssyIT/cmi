@@ -19,6 +19,7 @@ import {CurrentUser} from './core/store/model/currentUser.model';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'CMI App';
   currentUser$: Observable<CurrentUser>;
+  p: number = 1;
 
   constructor(private securityService: SecurityService,
               private router: Router,

@@ -15,7 +15,7 @@ import {EffectsModule} from "@ngrx/effects";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule} from "@angular/forms";
 import {MembersModule} from "./members/members.module";
-
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 @NgModule({
   declarations: [
@@ -32,10 +32,10 @@ import {MembersModule} from "./members/members.module";
     StoreModule.forRoot(reducerToken),
     EffectsModule.forRoot([InitializationEffects]),
     NgbModule.forRoot(),
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [reducerProvider],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

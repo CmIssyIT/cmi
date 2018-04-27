@@ -3,7 +3,7 @@
     <div class="row">
       <form class="form-group col-9 col-lg-10 col-sm-9 col-md-11 col-xl-11" role="search">
         <div class="input-group add-on">
-          <input type="text" class="form-control" placeholder="Je cherche quelqu'un.." [(ngModel)]="search" name="search">
+          <input type="text" class="form-control" placeholder="Je cherche quelqu'un.." [(ngModel)]="search" name="'search'">
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit">
               <i class="fa fa-search"></i>
@@ -12,8 +12,8 @@
         </div>
       </form>
     </div>
-    <div class="row mb-3">
-      <div class="dropdown justify-content-left" style="padding-left:15px; ">
+    <div class="row-container mb-3 col-11">
+      <div class="dropdown justify-content-left">
         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
           Un Nouveau <i class="fa fa-user-plus"></i>
@@ -24,8 +24,20 @@
           <a class="dropdown-item" href="StudentResponsible.html">Responsable de élève</a>
         </div>
       </div>
+      <div class="paginate">
+        <nav aria-label="Page navigation pages">
+          <a class="page-link" *ngFor="let page of getPages()" name={{page}}  (click)="currentPage = page"
+             [class.active]="page === currentPage">{{page + 1}}
+          </a>
+        </nav>
+        <select class="custom-select" id="inputGroupSelect02" style="margin-left: 10px;" [(ngModel)]="maxPageSize" (change)="maxPageSizeChange()">
+          <option>1</option>
+          <option>2</option>
+          <option>5</option>
+          <option>10</option>
+        </select>
+      </div>
     </div>
-
 
     <div class="table-responsive col-11">
       <div class="row">
@@ -33,13 +45,13 @@
           <thead class="thead-light">
           <tr class="align-text-bottom">
             <th class="text-nowrap" scope="col"><input  type="checkbox" name="aggree" value="1"> Select All</th>
-            <th class="text-nowrap" scope="col" style="width:230px">
+            <th class="text-nowrap" scope="col" style="width:230px" (click)="orderBy('firstName')">
               Nom Prénom
-              <i class="fa " [ngClass]="getIconOrderBy('firstName')" (click)="orderBy('firstName')"></i>
+              <i class="fa " [ngClass]="getIconOrderBy('firstName')"></i>
             </th>
-            <th class="text-nowrap" scope="col" >
+            <th class="text-nowrap" scope="col" (click)="orderBy('birthday')">
               Date de naissance
-              <i class="fa " [ngClass]="getIconOrderBy('birthday')" (click)="orderBy('birthday')"></i>
+              <i class="fa " [ngClass]="getIconOrderBy('birthday')"></i>
             </th>
             <th scope="col">
               Age
@@ -54,9 +66,9 @@
                 <option value=3>Tout</option>
               </select>
             </th>
-            <th scope="col">
+            <th scope="col" (click)="orderBy('gender')">
               Sexe
-              <i class="fa " [ngClass]="getIconOrderBy('gender')" (click)="orderBy('gender')"></i>
+              <i class="fa " [ngClass]="getIconOrderBy('gender')"></i>
             </th>
             <th scope="col">
               <select id='filterText1' style='display:inline-block' [(ngModel)]="classe">
@@ -71,7 +83,7 @@
           </tr>
           </thead>
           <tbody id="myTable">
-          <tr class="content" *ngFor="let member of getMembers()">
+          <tr class="content member" *ngFor="let member of getMembers()" (dblclick)="detailStudent()">
             <th scope="row">
               <input type="checkbox" name="aggree" value="1">
             </th>

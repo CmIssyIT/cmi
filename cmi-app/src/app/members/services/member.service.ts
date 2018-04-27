@@ -15,8 +15,8 @@ export class MemberService {
   constructor(private http: HttpClient) {}
 
   list(): Observable<Member[]> {
-    return this.http.get<Member []>('http://localhost:8080/members');
-    //return members;
+    //return this.http.get<Member []>('http://localhost:8080/members');
+    return Observable.of(members);
   }
 
 }

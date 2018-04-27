@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {Role} from './role';
 import {MemberService} from '../../services/member.service';
 import {Member} from './member';
@@ -11,7 +11,11 @@ export class MemberListComponent implements OnInit {
 
   members: Member [];
   public search = '';
+  public maxPageSize = 2;
+  public currentPage = 0;
   public role = 3;
+  public length = 0;
+  public pages = [];
   order = {
     field: 'firstName',
     asc: true
@@ -20,7 +24,7 @@ export class MemberListComponent implements OnInit {
 
   private memberRoles = Role;
 
-  constructor(private memberService: MemberService) {
+  constructor(private memberService: MemberService, private zone: NgZone) {
     this.memberService.list().subscribe(data => this.members = data);
   }
 
@@ -36,7 +40,7 @@ export class MemberListComponent implements OnInit {
       return;
     }
     const filtredMemebers = this.filterMember();
-    return filtredMemebers.sort((m1, m2) => {
+    let result =  filtredMemebers.sort((m1, m2) => {
       const val1 = m1[this.order.field];
       const val2 = m2[this.order.field];
       const sortValue: boolean =  this.order.asc ? val2 < val1 : val1 < val2;
@@ -46,6 +50,13 @@ export class MemberListComponent implements OnInit {
         return 1;
       }
     });
+
+    this.length  = ~~((result.length/ this.maxPageSize) +1);
+
+    setTimeout(()=> {
+      this.pages = Array.from(Array(length).keys());
+    },);
+     return result.slice(this.currentPage*this.maxPageSize, this.maxPageSize*(this.currentPage + 1));
   }
 
   filterMember(): Member [] {
@@ -66,6 +77,19 @@ export class MemberListComponent implements OnInit {
       }
       return classeCompatible && roleCompatible && nameCompatible;
     });
+  }
+
+  maxPageSizeChange() {
+    console.log("maxPageSizeChange test")
+    this.currentPage = 0;
+  }
+
+  getPages() {
+    return Array.from(Array(this.length).keys());
+  }
+
+  detailStudent() {
+    alert("detail");
   }
 
   getIconOrderBy (field) {

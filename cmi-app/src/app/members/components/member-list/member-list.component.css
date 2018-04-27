@@ -15,6 +15,12 @@ td {
   max-width: unset;
 }
 
+.row-container {
+  display: flex;
+  padding: 0px;
+  justify-content: space-between;
+}
+
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
   background-color: #c5f0f5;
@@ -23,4 +29,24 @@ td {
 .table-striped>tbody>tr:nth-child(even)>td,
 .table-striped>tbody>tr:nth-child(even)>th {
   background-color: white;
+}
+
+
+.paginate {
+  display: flex;
+  flex-direction: row;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+}
+
+nav .active {
+  background: #007bff;
+  color: white;
+}
+
+.member {
+  cursor: pointer;
 }
